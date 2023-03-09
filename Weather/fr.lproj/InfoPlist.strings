@@ -1,0 +1,10 @@
+/* 
+  InfoPlist.strings
+  Meteo
+
+  Created by Jérôme Cabanis on 09/03/2023.
+  
+*/
+
+"CFBundleDisplayName" = "Météo";
+"CFBundleName" = "Météo";
