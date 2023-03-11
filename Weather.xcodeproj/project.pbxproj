@@ -18,6 +18,15 @@
 		022625E029BA4EC0002670A4 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 022625E229BA4EC0002670A4 /* Localizable.strings */; };
 		022625E829BA51A0002670A4 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 022625EA29BA51A0002670A4 /* InfoPlist.strings */; };
 		022625ED29BA5741002670A4 /* CityDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 022625EC29BA5741002670A4 /* CityDetailsViewController.swift */; };
+		022625EF29BAA3CE002670A4 /* MainSplitViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 022625EE29BAA3CE002670A4 /* MainSplitViewController.swift */; };
+		022625F429BAA87A002670A4 /* Weather.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 022625F229BAA87A002670A4 /* Weather.xcdatamodeld */; };
+		022625F629BABB13002670A4 /* Persistence.swift in Sources */ = {isa = PBXBuildFile; fileRef = 022625F529BABB13002670A4 /* Persistence.swift */; };
+		022625F929BABD36002670A4 /* City+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 022625F729BABD36002670A4 /* City+CoreDataClass.swift */; };
+		022625FA29BABD36002670A4 /* City+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 022625F829BABD36002670A4 /* City+CoreDataProperties.swift */; };
+		022625FC29BABF3F002670A4 /* AddCityViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 022625FB29BABF3F002670A4 /* AddCityViewController.swift */; };
+		022625FE29BBC161002670A4 /* OpenWeather.swift in Sources */ = {isa = PBXBuildFile; fileRef = 022625FD29BBC161002670A4 /* OpenWeather.swift */; };
+		0226260029BBC1A4002670A4 /* Geocoding.swift in Sources */ = {isa = PBXBuildFile; fileRef = 022625FF29BBC1A4002670A4 /* Geocoding.swift */; };
+		0226260229BBCE7D002670A4 /* CityInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0226260129BBCE7D002670A4 /* CityInfo.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -57,6 +66,16 @@
 		022625E929BA51A0002670A4 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		022625EB29BA51A5002670A4 /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = fr.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		022625EC29BA5741002670A4 /* CityDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CityDetailsViewController.swift; sourceTree = "<group>"; };
+		022625EE29BAA3CE002670A4 /* MainSplitViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainSplitViewController.swift; sourceTree = "<group>"; };
+		022625F329BAA87A002670A4 /* Weather.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Weather.xcdatamodel; sourceTree = "<group>"; };
+		022625F529BABB13002670A4 /* Persistence.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Persistence.swift; sourceTree = "<group>"; };
+		022625F729BABD36002670A4 /* City+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "City+CoreDataClass.swift"; sourceTree = "<group>"; };
+		022625F829BABD36002670A4 /* City+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "City+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		022625FB29BABF3F002670A4 /* AddCityViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddCityViewController.swift; sourceTree = "<group>"; };
+		022625FD29BBC161002670A4 /* OpenWeather.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OpenWeather.swift; sourceTree = "<group>"; };
+		022625FF29BBC1A4002670A4 /* Geocoding.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Geocoding.swift; sourceTree = "<group>"; };
+		0226260129BBCE7D002670A4 /* CityInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CityInfo.swift; sourceTree = "<group>"; };
+		0226260329BBD8D3002670A4 /* AppKey.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = AppKey.xcconfig; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -87,6 +106,7 @@
 		0226252229BA2F2B002670A4 = {
 			isa = PBXGroup;
 			children = (
+				0226260429BBD8E4002670A4 /* Appkey */,
 				0226252D29BA2F2B002670A4 /* Weather */,
 				0226254429BA2F2C002670A4 /* WeatherTests */,
 				0226254E29BA2F2C002670A4 /* WeatherUITests */,
@@ -140,8 +160,10 @@
 			children = (
 				0226253929BA2F2C002670A4 /* LaunchScreen.storyboard */,
 				0226253429BA2F2B002670A4 /* Main.storyboard */,
+				022625EE29BAA3CE002670A4 /* MainSplitViewController.swift */,
 				0226253229BA2F2B002670A4 /* CityListTableViewController.swift */,
 				022625EC29BA5741002670A4 /* CityDetailsViewController.swift */,
+				022625FB29BABF3F002670A4 /* AddCityViewController.swift */,
 			);
 			path = UI;
 			sourceTree = "<group>";
@@ -149,8 +171,23 @@
 		022625E529BA4F37002670A4 /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				022625F229BAA87A002670A4 /* Weather.xcdatamodeld */,
+				022625F529BABB13002670A4 /* Persistence.swift */,
+				022625F729BABD36002670A4 /* City+CoreDataClass.swift */,
+				022625F829BABD36002670A4 /* City+CoreDataProperties.swift */,
+				022625FD29BBC161002670A4 /* OpenWeather.swift */,
+				022625FF29BBC1A4002670A4 /* Geocoding.swift */,
+				0226260129BBCE7D002670A4 /* CityInfo.swift */,
 			);
 			path = Models;
+			sourceTree = "<group>";
+		};
+		0226260429BBD8E4002670A4 /* Appkey */ = {
+			isa = PBXGroup;
+			children = (
+				0226260329BBD8D3002670A4 /* AppKey.xcconfig */,
+			);
+			path = Appkey;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -287,8 +324,17 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				022625F429BAA87A002670A4 /* Weather.xcdatamodeld in Sources */,
+				022625EF29BAA3CE002670A4 /* MainSplitViewController.swift in Sources */,
 				022625ED29BA5741002670A4 /* CityDetailsViewController.swift in Sources */,
+				022625F629BABB13002670A4 /* Persistence.swift in Sources */,
+				022625FC29BABF3F002670A4 /* AddCityViewController.swift in Sources */,
+				022625FA29BABD36002670A4 /* City+CoreDataProperties.swift in Sources */,
+				022625FE29BBC161002670A4 /* OpenWeather.swift in Sources */,
 				0226253329BA2F2B002670A4 /* CityListTableViewController.swift in Sources */,
+				0226260029BBC1A4002670A4 /* Geocoding.swift in Sources */,
+				022625F929BABD36002670A4 /* City+CoreDataClass.swift in Sources */,
+				0226260229BBCE7D002670A4 /* CityInfo.swift in Sources */,
 				0226252F29BA2F2B002670A4 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -367,6 +413,7 @@
 /* Begin XCBuildConfiguration section */
 		0226255329BA2F2C002670A4 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 0226260329BBD8D3002670A4 /* AppKey.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
@@ -428,6 +475,7 @@
 		};
 		0226255429BA2F2C002670A4 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 0226260329BBD8D3002670A4 /* AppKey.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
@@ -653,6 +701,19 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		022625F229BAA87A002670A4 /* Weather.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				022625F329BAA87A002670A4 /* Weather.xcdatamodel */,
+			);
+			currentVersion = 022625F329BAA87A002670A4 /* Weather.xcdatamodel */;
+			path = Weather.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = 0226252329BA2F2B002670A4 /* Project object */;
 }

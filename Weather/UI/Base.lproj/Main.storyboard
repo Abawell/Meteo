@@ -12,7 +12,7 @@
         <!--City Details View Controller-->
         <scene sceneID="pQ8-9B-cGE">
             <objects>
-                <viewController id="7jF-DC-dH8" customClass="CityDetailsViewController" customModule="Meteo" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="7jF-DC-dH8" customClass="CityDetailsViewController" customModule="Weather" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Q90-Ct-qPA">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -27,7 +27,7 @@
         <!--City List Table View Controller-->
         <scene sceneID="Ue0-ed-Sg6">
             <objects>
-                <tableViewController clearsSelectionOnViewWillAppear="NO" id="eha-VP-9sx" customClass="CityListTableViewController" customModule="Meteo" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController clearsSelectionOnViewWillAppear="NO" id="eha-VP-9sx" customClass="CityListTableViewController" customModule="Weather" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" id="dKQ-mM-qCW">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -47,7 +47,13 @@
                             <outlet property="delegate" destination="eha-VP-9sx" id="G6r-Hm-4ry"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" id="5id-Na-Vs3"/>
+                    <navigationItem key="navigationItem" id="5id-Na-Vs3">
+                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="iAc-Jc-bKL">
+                            <connections>
+                                <segue destination="rjS-ao-wU9" kind="presentation" identifier="AddCity" id="liA-n7-CeW"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="fqu-HX-Q28" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
@@ -69,10 +75,10 @@
             </objects>
             <point key="canvasLocation" x="834" y="-242"/>
         </scene>
-        <!--Split View Controller-->
+        <!--Main Split View Controller-->
         <scene sceneID="Isv-hz-2en">
             <objects>
-                <splitViewController modalPresentationStyle="fullScreen" allowDoubleColumnStyle="YES" primaryBackgroundStyle="sidebar" id="Hk8-wK-9hv" sceneMemberID="viewController">
+                <splitViewController modalPresentationStyle="fullScreen" allowDoubleColumnStyle="YES" primaryBackgroundStyle="sidebar" id="Hk8-wK-9hv" customClass="MainSplitViewController" customModule="Weather" customModuleProvider="target" sceneMemberID="viewController">
                     <connections>
                         <segue destination="8MN-M3-WNS" kind="relationship" relationship="masterViewController" id="Zjj-dg-FCo"/>
                         <segue destination="7jF-DC-dH8" kind="relationship" relationship="detailViewController" id="KsA-6D-kqR"/>
@@ -81,6 +87,75 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="3OO-pg-fMZ" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-70" y="62"/>
+        </scene>
+        <!--Add City View Controller-->
+        <scene sceneID="xlG-D2-RfG">
+            <objects>
+                <tableViewController id="4pl-vg-Vz7" customClass="AddCityViewController" customModule="Weather" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" id="tiw-in-2yX">
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="783"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="CityCell" textLabel="xz6-o5-cli" detailTextLabel="AYi-et-l39" style="IBUITableViewCellStyleSubtitle" id="21x-Hv-1qU">
+                                <rect key="frame" x="0.0" y="50" width="393" height="43.666667938232422"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="21x-Hv-1qU" id="zyL-0O-LQO">
+                                    <rect key="frame" x="0.0" y="0.0" width="393" height="43.666667938232422"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="xz6-o5-cli">
+                                            <rect key="frame" x="20" y="6.0000000000000009" width="25" height="14.333333333333334"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="0.0"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Subtitle" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="AYi-et-l39">
+                                            <rect key="frame" x="19.999999999999996" y="22.333333333333336" width="43.666666666666664" height="14.333333333333334"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="0.0"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                </tableViewCellContentView>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="4pl-vg-Vz7" id="57b-1s-Qj8"/>
+                            <outlet property="delegate" destination="4pl-vg-Vz7" id="ftB-zV-3L4"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" id="wWt-Ko-cLI">
+                        <barButtonItem key="leftBarButtonItem" title="Cancel" id="cwd-hK-p8R">
+                            <connections>
+                                <action selector="onCancel:" destination="4pl-vg-Vz7" id="B2s-kW-Yiw"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="fgG-XU-Rqy" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3418" y="-242"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="fbI-py-rgy">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="rjS-ao-wU9" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="oLp-0y-91N">
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="56"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="4pl-vg-Vz7" kind="relationship" relationship="rootViewController" id="gZM-K3-P88"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="44S-Oz-D3j" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2585.4961832061067" y="-242.25352112676057"/>
         </scene>
     </scenes>
     <resources>

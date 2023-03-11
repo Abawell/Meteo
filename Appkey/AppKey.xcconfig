@@ -1,0 +1,14 @@
+//
+//  Config.xcconfig
+//  Weather
+//
+//  Created by Jérôme Cabanis on 10/03/2023.
+//
+
+// Configuration settings file format documentation can be found at:
+// https://help.apple.com/xcode/#/dev745c5c974
+
+// Normalement, pour des raisons de sécurité, ce fichier ne doit pas apparaitre de le repository
+// mais il est présent ici pour permettre de tester l'application
+
+APP_ID = 3949132623f2e5405054a3bc0a4109f9

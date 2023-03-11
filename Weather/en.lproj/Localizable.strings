@@ -7,3 +7,8 @@
 */
 
 "Weather"="Weather";
+
+"Cancel"="Cancel";
+"CityName"="Please enter a city name";
+"Error"="Error";
+"NotFound"="No results found";

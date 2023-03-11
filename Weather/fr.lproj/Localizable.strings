@@ -7,3 +7,8 @@
 */
 
 "Weather"="Météo";
+
+"Cancel"="Annuler";
+"CityName"="Merci d'entrer un nom de ville";
+"Error"="Erreur";
+"NotFound"="Aucun résultat trouvé";

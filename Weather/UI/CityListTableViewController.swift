@@ -15,6 +15,27 @@ class CityListTableViewController: UITableViewController {
 		title = NSLocalizedString("Weather", comment: "App name")
 	}
 
+	// MARK: - Navigation
 
+	override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+		switch segue.identifier {
+		case "AddCity":
+			if let navController = segue.destination as? UINavigationController,
+			   let controller = navController.viewControllers.first as? AddCityViewController {
+				controller.delegate = self
+			}
+
+			break
+		default: break
+		}
+	}
+}
+
+// MARK: - AddCityViewControllerDelegate
+extension CityListTableViewController: AddCityViewControllerDelegate {
+	
+	func addCityViewController(_ controller: AddCityViewController, didSelect city: CityInfo) {
+		Persistence.shared.addCity(city)
+	}
 }
 
