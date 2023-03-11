@@ -124,7 +124,6 @@ class OpenWeather {
 	}
 
 	@objc private func fireTimer() {
-		print("fireTimer")
 		clean()
 		for city in registry.keys {
 			getWeatherAsyncronously(for: city)

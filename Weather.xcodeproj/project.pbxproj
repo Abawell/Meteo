@@ -29,6 +29,7 @@
 		0226260229BBCE7D002670A4 /* CityInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0226260129BBCE7D002670A4 /* CityInfo.swift */; };
 		0226260629BCA9A0002670A4 /* CityTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0226260529BCA9A0002670A4 /* CityTableViewCell.swift */; };
 		0226260829BCCA48002670A4 /* Weather.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0226260729BCCA48002670A4 /* Weather.swift */; };
+		0226260A29BCFE08002670A4 /* Media.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0226260929BCFE08002670A4 /* Media.xcassets */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -80,6 +81,7 @@
 		0226260329BBD8D3002670A4 /* AppKey.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = AppKey.xcconfig; sourceTree = "<group>"; };
 		0226260529BCA9A0002670A4 /* CityTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CityTableViewCell.swift; sourceTree = "<group>"; };
 		0226260729BCCA48002670A4 /* Weather.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Weather.swift; sourceTree = "<group>"; };
+		0226260929BCFE08002670A4 /* Media.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Media.xcassets; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -162,6 +164,7 @@
 		022625E429BA4F24002670A4 /* UI */ = {
 			isa = PBXGroup;
 			children = (
+				0226260929BCFE08002670A4 /* Media.xcassets */,
 				0226253929BA2F2C002670A4 /* LaunchScreen.storyboard */,
 				0226253429BA2F2B002670A4 /* Main.storyboard */,
 				022625EE29BAA3CE002670A4 /* MainSplitViewController.swift */,
@@ -305,6 +308,7 @@
 				022625E029BA4EC0002670A4 /* Localizable.strings in Resources */,
 				0226253829BA2F2C002670A4 /* Assets.xcassets in Resources */,
 				0226253629BA2F2B002670A4 /* Main.storyboard in Resources */,
+				0226260A29BCFE08002670A4 /* Media.xcassets in Resources */,
 				022625E829BA51A0002670A4 /* InfoPlist.strings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
