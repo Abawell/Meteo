@@ -67,16 +67,8 @@ class AddCityViewController: UITableViewController {
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "CityCell", for: indexPath)
-
-		let city = cities[indexPath.row]
-		cell.textLabel?.text = city.name
-		let country = (Locale.current as NSLocale).localizedString(forCountryCode: city.country) ?? city.country
-		if let state = city.state {
-			cell.detailTextLabel?.text = "\(state) - \(country)"
-		} else {
-			cell.detailTextLabel?.text = country
-		}
+        let cell = tableView.dequeueReusableCell(withIdentifier: "CityCell", for: indexPath) as! CityTableViewCell
+		cell.cityInfo = cities[indexPath.row]
         return cell
     }
 
@@ -86,10 +78,27 @@ class AddCityViewController: UITableViewController {
 		presentingViewController?.dismiss(animated: true)
 	}
 
-	override func tableView(_ tableView: UITableView, titleForFooterInSection section: Int) -> String? {
-		if askForName { return NSLocalizedString("CityName", comment: "Please enter a city name") }
-		if cities.isEmpty { return NSLocalizedString("NotFound", comment: "No results found") }
-		return nil
+	override func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
+		guard askForName || cities.isEmpty else { return nil }
+		let back = UIView()
+		back.translatesAutoresizingMaskIntoConstraints = false
+		back.backgroundColor = .clear
+		back.widthAnchor.constraint(equalToConstant: tableView.frame.width).isActive = true
+		let label = UILabel()
+		label.translatesAutoresizingMaskIntoConstraints = false
+		if askForName {
+			label.text = NSLocalizedString("CityName", comment: "Please enter a city name")
+		} else {
+			label.text = NSLocalizedString("NotFound", comment: "No results found")
+		}
+		label.font = UIFont.preferredFont(forTextStyle: .body)
+		label.textAlignment = .center
+		back.addSubview(label)
+		label.leftAnchor.constraint(equalTo: back.leftAnchor).isActive = true
+		label.rightAnchor.constraint(equalTo: back.rightAnchor).isActive = true
+		label.topAnchor.constraint(equalTo: back.topAnchor, constant: 15).isActive = true
+		label.bottomAnchor.constraint(equalTo: back.bottomAnchor).isActive = true
+		return back
 	}
 }
 

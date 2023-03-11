@@ -44,16 +44,8 @@ class CityListTableViewController: UITableViewController {
 	}
 
 	override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-		let cell = tableView.dequeueReusableCell(withIdentifier: "CityCell", for: indexPath)
-
-		let city = fetchedResultsController.object(at: indexPath)
-		cell.textLabel?.text = city.name
-		let country = (Locale.current as NSLocale).localizedString(forCountryCode: city.country) ?? city.country
-		if let state = city.state {
-			cell.detailTextLabel?.text = "\(state) - \(country)"
-		} else {
-			cell.detailTextLabel?.text = country
-		}
+		let cell = tableView.dequeueReusableCell(withIdentifier: "CityCell", for: indexPath) as! CityTableViewCell
+		cell.city = fetchedResultsController.object(at: indexPath)
 		return cell
 	}
 
