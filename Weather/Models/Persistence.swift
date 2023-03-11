@@ -47,10 +47,21 @@ class Persistence {
 	}()
 
 	init() {
-		do {
-			try fetchedResultsController.performFetch()
-		} catch {
-			print("Fetching error: \(error.localizedDescription)")
+	}
+
+	func load(handler: @escaping (Error?) -> Void) {
+		context.perform { [self] in
+			do {
+				try fetchedResultsController.performFetch()
+				DispatchQueue.main.async {
+					handler(nil)
+				}
+			} catch {
+				print("Fetching error: \(error.localizedDescription)")
+				DispatchQueue.main.async {
+					handler(error)
+				}
+			}
 		}
 	}
 

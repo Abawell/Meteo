@@ -18,6 +18,16 @@ class CityListTableViewController: UITableViewController {
 		title = NSLocalizedString("Weather", comment: "App name")
 		fetchedResultsController = Persistence.shared.fetchedResultsController
 		fetchedResultsController.delegate = self
+
+		Persistence.shared.load { [self] error in
+			if let error {
+				let alert = UIAlertController(title: NSLocalizedString("Error", comment: "Error"), message: error.localizedDescription, preferredStyle: .alert)
+				alert.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: "OK"), style: .default))
+				present(alert, animated: true)
+			} else {
+				tableView.reloadData()
+			}
+		}
 	}
 
 	// MARK: - Navigation

@@ -5,8 +5,7 @@
 //  Created by Jérôme Cabanis on 10/03/2023.
 //
 
-// Dans un soucis d'économie du nombre de requêtes vers le serveur, la recherche des villes
-// ne se fait pas en continu, mais lors de l'appuie sur le bouton Rechercher.
+// To limit the number of requests to the server, the search for cities is not done continuously, but when you press the Search button.
 
 import UIKit
 
@@ -139,7 +138,7 @@ extension AddCityViewController: GeocodingDelegate {
 
 	func geocoding(_ geocoding: Geocoding, error: Error) {
 		let alert = UIAlertController(title: NSLocalizedString("Error", comment: "Error"), message: error.localizedDescription, preferredStyle: .alert)
-		alert.addAction(UIAlertAction(title: NSLocalizedString("Cancel", comment: "Cancel"), style: .cancel))
+		alert.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: "OK"), style: .default))
 		present(alert, animated: true)
 		askForName = true
 		tableView.reloadData()
