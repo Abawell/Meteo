@@ -9,9 +9,11 @@ import UIKit
 
 class CityTableViewCell: UITableViewCell {
 
-	@IBOutlet private var containerView: UIView?
+	// Required
 	@IBOutlet private var nameLabel: UILabel!
 	@IBOutlet private var detailsLabel: UILabel!
+	// Optional
+	@IBOutlet private var containerView: UIView?
 
 	override func awakeFromNib() {
 		super.awakeFromNib()
@@ -30,6 +32,10 @@ class CityTableViewCell: UITableViewCell {
 			containerView.layer.borderWidth = 1
 			containerView.layer.cornerRadius = 15
 		}
+	}
+
+	override func prepareForReuse() {
+
 	}
 
 	var city: City? {
@@ -57,6 +63,13 @@ class CityTableViewCell: UITableViewCell {
 			} else {
 				detailsLabel.text = country
 			}
+		}
+	}
+
+	var weather: Weather? {
+		didSet {
+			guard let weather else { return }
+			print(weather)
 		}
 	}
 }

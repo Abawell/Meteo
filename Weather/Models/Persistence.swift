@@ -77,13 +77,13 @@ class Persistence {
 		}
 	}
 
-	func addCity(_ cityInfo: CityInfo) {
+	func addCity(_ cityInfo: CityInfo) -> City? {
 		do {
 			// Verify the city is not already in the store
 			let testFetch = City.fetchRequest()
 			testFetch.predicate = NSPredicate(format: "%K == %@ AND %K == %@ AND %K == %@", #keyPath(City.name), cityInfo.name, #keyPath(City.state), cityInfo.state ?? "", #keyPath(City.country), cityInfo.country)
 			let result = try context.fetch(testFetch)
-			if !result.isEmpty { return  }	// Already exist
+			if !result.isEmpty { return nil }	// Already exist
 
 			let city = City(context: context)
 			city.id = UUID()
@@ -93,8 +93,10 @@ class Persistence {
 			city.lat = cityInfo.lat
 			city.lon = cityInfo.lon
 			save()
+			return city
 		} catch {
 			print(error.localizedDescription)
+			return nil
 		}
 	}
 

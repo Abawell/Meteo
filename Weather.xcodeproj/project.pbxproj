@@ -28,6 +28,7 @@
 		0226260029BBC1A4002670A4 /* Geocoding.swift in Sources */ = {isa = PBXBuildFile; fileRef = 022625FF29BBC1A4002670A4 /* Geocoding.swift */; };
 		0226260229BBCE7D002670A4 /* CityInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0226260129BBCE7D002670A4 /* CityInfo.swift */; };
 		0226260629BCA9A0002670A4 /* CityTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0226260529BCA9A0002670A4 /* CityTableViewCell.swift */; };
+		0226260829BCCA48002670A4 /* Weather.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0226260729BCCA48002670A4 /* Weather.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -78,6 +79,7 @@
 		0226260129BBCE7D002670A4 /* CityInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CityInfo.swift; sourceTree = "<group>"; };
 		0226260329BBD8D3002670A4 /* AppKey.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = AppKey.xcconfig; sourceTree = "<group>"; };
 		0226260529BCA9A0002670A4 /* CityTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CityTableViewCell.swift; sourceTree = "<group>"; };
+		0226260729BCCA48002670A4 /* Weather.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Weather.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -178,9 +180,10 @@
 				022625F529BABB13002670A4 /* Persistence.swift */,
 				022625F729BABD36002670A4 /* City+CoreDataClass.swift */,
 				022625F829BABD36002670A4 /* City+CoreDataProperties.swift */,
+				0226260129BBCE7D002670A4 /* CityInfo.swift */,
+				0226260729BCCA48002670A4 /* Weather.swift */,
 				022625FD29BBC161002670A4 /* OpenWeather.swift */,
 				022625FF29BBC1A4002670A4 /* Geocoding.swift */,
-				0226260129BBCE7D002670A4 /* CityInfo.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -333,6 +336,7 @@
 				022625F629BABB13002670A4 /* Persistence.swift in Sources */,
 				022625FC29BABF3F002670A4 /* AddCityViewController.swift in Sources */,
 				022625FA29BABD36002670A4 /* City+CoreDataProperties.swift in Sources */,
+				0226260829BCCA48002670A4 /* Weather.swift in Sources */,
 				022625FE29BBC161002670A4 /* OpenWeather.swift in Sources */,
 				0226253329BA2F2B002670A4 /* CityListTableViewController.swift in Sources */,
 				0226260629BCA9A0002670A4 /* CityTableViewCell.swift in Sources */,

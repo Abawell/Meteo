@@ -25,9 +25,18 @@ class CityListTableViewController: UITableViewController {
 				alert.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: "OK"), style: .default))
 				present(alert, animated: true)
 			} else {
+				if let cities = fetchedResultsController.fetchedObjects, !cities.isEmpty {
+					for city in cities {
+						OpenWeather.shared.addObserver(self, for: city)
+					}
+				}
 				tableView.reloadData()
 			}
 		}
+	}
+
+	deinit {
+		OpenWeather.shared.removeObserver(self)
 	}
 
 	// MARK: - Navigation
@@ -55,13 +64,16 @@ class CityListTableViewController: UITableViewController {
 
 	override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
 		let cell = tableView.dequeueReusableCell(withIdentifier: "CityCell", for: indexPath) as! CityTableViewCell
-		cell.city = fetchedResultsController.object(at: indexPath)
+		let city = fetchedResultsController.object(at: indexPath)
+		cell.city = city
+		cell.weather = OpenWeather.shared.getWeather(for: city)
 		return cell
 	}
 
 	override func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
 		let deleteAction = UIContextualAction(style: .destructive, title: NSLocalizedString("Delete", comment: "Delete")) { [unowned self] action, sourceView, completionHandler in
 			let city = fetchedResultsController.object(at: indexPath)
+			OpenWeather.shared.removeObserver(self, for: city)
 			Persistence.shared.delete(city)
 			completionHandler(true)
 		}
@@ -73,8 +85,10 @@ class CityListTableViewController: UITableViewController {
 // MARK: - AddCityViewControllerDelegate
 extension CityListTableViewController: AddCityViewControllerDelegate {
 	
-	func addCityViewController(_ controller: AddCityViewController, didSelect city: CityInfo) {
-		Persistence.shared.addCity(city)
+	func addCityViewController(_ controller: AddCityViewController, didSelect cityInfo: CityInfo) {
+		if let city = Persistence.shared.addCity(cityInfo) {
+			OpenWeather.shared.addObserver(self, for: city)
+		}
 	}
 }
 
@@ -99,6 +113,16 @@ extension CityListTableViewController: NSFetchedResultsControllerDelegate {
 			tableView.reloadRows(at: [indexPath!], with: .none)
 		@unknown default:
 			tableView.reloadData()
+		}
+	}
+}
+
+extension CityListTableViewController: OpenWeatherObserver {
+	func openWeather(weather: Weather, for city: City) {
+		if let indexPath = fetchedResultsController.indexPath(forObject: city),
+		   let cell = tableView.cellForRow(at: indexPath) as? CityTableViewCell
+		{
+			cell.weather = weather
 		}
 	}
 }
