@@ -30,6 +30,7 @@
 		0226260629BCA9A0002670A4 /* CityTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0226260529BCA9A0002670A4 /* CityTableViewCell.swift */; };
 		0226260829BCCA48002670A4 /* Weather.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0226260729BCCA48002670A4 /* Weather.swift */; };
 		0226260A29BCFE08002670A4 /* Media.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0226260929BCFE08002670A4 /* Media.xcassets */; };
+		0226260E29BD2ACD002670A4 /* CityDescription.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0226260D29BD2ACD002670A4 /* CityDescription.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -82,6 +83,7 @@
 		0226260529BCA9A0002670A4 /* CityTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CityTableViewCell.swift; sourceTree = "<group>"; };
 		0226260729BCCA48002670A4 /* Weather.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Weather.swift; sourceTree = "<group>"; };
 		0226260929BCFE08002670A4 /* Media.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Media.xcassets; sourceTree = "<group>"; };
+		0226260D29BD2ACD002670A4 /* CityDescription.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CityDescription.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -181,6 +183,7 @@
 			children = (
 				022625F229BAA87A002670A4 /* Weather.xcdatamodeld */,
 				022625F529BABB13002670A4 /* Persistence.swift */,
+				0226260D29BD2ACD002670A4 /* CityDescription.swift */,
 				022625F729BABD36002670A4 /* City+CoreDataClass.swift */,
 				022625F829BABD36002670A4 /* City+CoreDataProperties.swift */,
 				0226260129BBCE7D002670A4 /* CityInfo.swift */,
@@ -347,6 +350,7 @@
 				0226260029BBC1A4002670A4 /* Geocoding.swift in Sources */,
 				022625F929BABD36002670A4 /* City+CoreDataClass.swift in Sources */,
 				0226260229BBCE7D002670A4 /* CityInfo.swift in Sources */,
+				0226260E29BD2ACD002670A4 /* CityDescription.swift in Sources */,
 				0226252F29BA2F2B002670A4 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

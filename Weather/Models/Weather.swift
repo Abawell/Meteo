@@ -5,7 +5,7 @@
 //  Created by Jérôme Cabanis on 11/03/2023.
 //
 
-import Foundation
+import UIKit
 
 private struct NestedWeather: Decodable {
 	let icon: String
@@ -21,7 +21,7 @@ struct Weather: Decodable {
 	let tempMin: Double
 	let tempMax: Double
 	let pressure: Double
-	let humidity: Double
+	let humidity: Int
 	let windSpeed: Double
 	let windDeg: Double
 	let windGust: Double?
@@ -65,11 +65,19 @@ struct Weather: Decodable {
 		self.tempMin = try mainContainer.decode(Double.self, forKey: .temp_min)
 		self.tempMax = try mainContainer.decode(Double.self, forKey: .temp_max)
 		self.pressure = try mainContainer.decode(Double.self, forKey: .pressure)
-		self.humidity = try mainContainer.decode(Double.self, forKey: .humidity)
+		self.humidity = Int(try mainContainer.decode(Double.self, forKey: .humidity))
 
 		let windContainer = try container.nestedContainer(keyedBy: CodingKeys.WindCodingKeys.self, forKey: .wind)
 		self.windSpeed = try windContainer.decode(Double.self, forKey: .speed)
 		self.windDeg = try windContainer.decode(Double.self, forKey: .deg)
 		self.windGust = try windContainer.decodeIfPresent(Double.self, forKey: .gust)
+	}
+
+	var formattedDescription: String {
+		return description.prefix(1).capitalized + description.dropFirst()
+	}
+
+	var image: UIImage? {
+		return UIImage(named: icon)
 	}
 }

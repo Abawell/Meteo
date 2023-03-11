@@ -23,3 +23,5 @@ extension City {
     @NSManaged public var lat: Double
     @NSManaged public var lon: Double
 }
+
+extension City: CityDescription {}

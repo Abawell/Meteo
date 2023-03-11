@@ -9,8 +9,22 @@
 "Weather"="Weather";
 
 "Cancel"="Cancel";
+"Cities"="Cities";
 "CityName"="Please enter a city name";
 "Delete"="Delete";
 "Error"="Error";
 "NotFound"="No results found";
 "OK"="OK";
+"Temp"="Temperatures";
+
+"Min"="Minimum:";
+"Max"="Maximum:";
+"FeelsLike"="Perceived:";
+"Pressure"="Pressure";
+"Humidity"="Humidity";
+"Wind"="Wind";
+"Gusts"="Gusts at %@";
+"North"="N";
+"South"="S";
+"East"="E";
+"West"="W";

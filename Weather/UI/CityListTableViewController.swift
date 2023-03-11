@@ -16,6 +16,8 @@ class CityListTableViewController: UITableViewController {
 		super.viewDidLoad()
 
 		title = NSLocalizedString("Weather", comment: "App name")
+		navigationItem.backButtonTitle = NSLocalizedString("Cities", comment: "Cities")
+
 		fetchedResultsController = Persistence.shared.fetchedResultsController
 		fetchedResultsController.delegate = self
 
@@ -49,7 +51,14 @@ class CityListTableViewController: UITableViewController {
 				controller.delegate = self
 			}
 
-			break
+		case "Details":
+			if let navController = segue.destination as? UINavigationController,
+			   let controller = navController.viewControllers.first as? CityDetailsViewController,
+			   let indexPath = tableView.indexPathForSelectedRow
+			{
+				controller.city = fetchedResultsController.object(at: indexPath)
+			}
+
 		default: break
 		}
 	}

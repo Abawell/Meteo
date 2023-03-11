@@ -67,7 +67,7 @@ class AddCityViewController: UITableViewController {
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "CityCell", for: indexPath) as! CityTableViewCell
-		cell.cityInfo = cities[indexPath.row]
+		cell.city = cities[indexPath.row]
         return cell
     }
 

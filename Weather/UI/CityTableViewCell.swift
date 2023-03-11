@@ -32,6 +32,7 @@ class CityTableViewCell: UITableViewCell {
 		}
 		iconImageView?.tintColor = .white
 		prepareForReuse()
+		setSelected(false, animated: false)
 	}
 
 	override func prepareForReuse() {
@@ -68,40 +69,21 @@ class CityTableViewCell: UITableViewCell {
 		}
 	}
 
-	var city: City? {
+	var city: CityDescription? {
 		didSet {
 			guard let city else { return }
 
 			nameLabel.text = city.name
-			let country = (Locale.current as NSLocale).localizedString(forCountryCode: city.country) ?? city.country
-			if let state = city.state {
-				detailsLabel.text = "\(state) - \(country)"
-			} else {
-				detailsLabel.text = country
-			}
+			detailsLabel.text = city.location
 		}
 	}
 
-	var cityInfo: CityInfo? {
-		didSet {
-			guard let city = cityInfo else { return }
-
-			nameLabel.text = city.name
-			let country = (Locale.current as NSLocale).localizedString(forCountryCode: city.country) ?? city.country
-			if let state = city.state {
-				detailsLabel.text = "\(state) - \(country)"
-			} else {
-				detailsLabel.text = country
-			}
-		}
-	}
 
 	var weather: Weather? {
 		didSet {
 			guard let weather else { return }
-			let description = weather.description
-			descriptionLabel?.text = description.prefix(1).capitalized + description.dropFirst()
-			iconImageView?.image = UIImage(named: weather.icon)
+			descriptionLabel?.text = weather.formattedDescription
+			iconImageView?.image = weather.image
 			let kelvin = Measurement(value: weather.temp, unit: UnitTemperature.kelvin)
 			let formatter = MeasurementFormatter()
 			let numberFormatter = NumberFormatter()

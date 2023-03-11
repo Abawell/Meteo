@@ -9,8 +9,22 @@
 "Weather"="Météo";
 
 "Cancel"="Annuler";
+"Cities"="Villes";
 "CityName"="Merci d'entrer un nom de ville";
 "Delete"="Supprimer";
 "Error"="Erreur";
 "NotFound"="Aucun résultat trouvé";
 "OK"="OK";
+"Temp"="Températures";
+
+"Min"="Minimum :";
+"Max"="Maximum :";
+"FeelsLike"="Ressentie :";
+"Pressure"="Pression";
+"Humidity"="Humidité";
+"Wind"="Vent";
+"Gusts"="Rafales à %@";
+"North"="N";
+"South"="S";
+"East"="E";
+"West"="O";

@@ -13,7 +13,12 @@ class MainSplitViewController: UISplitViewController {
         super.viewDidLoad()
 
 		delegate = self
-		preferredDisplayMode = .allVisible
+		preferredDisplayMode = .oneBesideSecondary
+		preferredPrimaryColumnWidthFraction = 0.4
+		maximumPrimaryColumnWidth = 600
+		if #available(iOS 14.0, *) {
+			preferredSplitBehavior = .tile
+		}
 	}
 
 }

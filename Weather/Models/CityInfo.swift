@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct CityInfo: Decodable, Hashable, Equatable, Comparable {
+struct CityInfo: CityDescription, Decodable, Hashable, Equatable, Comparable {
 
 	let name: String
 	let state: String?
