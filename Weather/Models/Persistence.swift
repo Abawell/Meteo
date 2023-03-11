@@ -36,8 +36,23 @@ class Persistence {
 		return container.viewContext
 	}()
 
+	lazy var fetchedResultsController: NSFetchedResultsController<City> = {
+		let request = City.fetchRequest()
+		let nameSort = NSSortDescriptor(key: #keyPath(City.name), ascending: true)
+		let stateSort = NSSortDescriptor(key: #keyPath(City.state), ascending: true)
+		let countrySort = NSSortDescriptor(key: #keyPath(City.country), ascending: true)
+		request.sortDescriptors = [nameSort, stateSort, countrySort]
+		let fetchedResultsController = NSFetchedResultsController(fetchRequest: request, managedObjectContext: context, sectionNameKeyPath: nil, cacheName: nil)
+		return fetchedResultsController
+	}()
 
-	// MARK: - Core Data Saving support
+	init() {
+		do {
+			try fetchedResultsController.performFetch()
+		} catch {
+			print("Fetching error: \(error.localizedDescription)")
+		}
+	}
 
 	private func save() {
 		guard context.hasChanges else { return }
@@ -57,7 +72,7 @@ class Persistence {
 			let testFetch = City.fetchRequest()
 			testFetch.predicate = NSPredicate(format: "%K == %@ AND %K == %@ AND %K == %@", #keyPath(City.name), cityInfo.name, #keyPath(City.state), cityInfo.state ?? "", #keyPath(City.country), cityInfo.country)
 			let result = try context.fetch(testFetch)
-			if !result.isEmpty { return }	// Already exist
+			if !result.isEmpty { return  }	// Already exist
 
 			let city = City(context: context)
 			city.id = UUID()
@@ -67,9 +82,13 @@ class Persistence {
 			city.lat = cityInfo.lat
 			city.lon = cityInfo.lon
 			save()
-
 		} catch {
 			print(error.localizedDescription)
 		}
+	}
+
+	func delete(_ city: City) {
+		context.delete(city)
+		save()
 	}
 }

@@ -22,11 +22,14 @@ class AddCityViewController: UITableViewController {
 	private var cities = [CityInfo]()
 	private var askForName = true
 
+	private var searchController: UISearchController!
+
     override func viewDidLoad() {
         super.viewDidLoad()
 
-		let searchController = UISearchController(searchResultsController: nil)
+		searchController = UISearchController(searchResultsController: nil)
 		searchController.searchResultsUpdater = self
+		searchController.delegate = self
 		searchController.searchBar.delegate = self
 		searchController.dimsBackgroundDuringPresentation = false
 		searchController.hidesNavigationBarDuringPresentation = false
@@ -39,10 +42,15 @@ class AddCityViewController: UITableViewController {
 
 		navigationItem.searchController = searchController
 		navigationItem.hidesSearchBarWhenScrolling = false
-		searchController.becomeFirstResponder()
+		searchController.searchBar.becomeFirstResponder()
 
 		geocoding.delegate = self
     }
+
+	override func viewDidAppear(_ animated: Bool) {
+		super.viewDidAppear(animated)
+		searchController.isActive = true
+	}
 
 	@IBAction func onCancel(_ sender: UIBarButtonItem) {
 		presentingViewController?.dismiss(animated: true)
@@ -87,7 +95,6 @@ class AddCityViewController: UITableViewController {
 
 // MARK: - UISearchBarDelegate
 extension AddCityViewController: UISearchBarDelegate {
-
 	func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
 		if let name = searchBar.text, !name.isEmpty {
 			cities = []
@@ -95,6 +102,14 @@ extension AddCityViewController: UISearchBarDelegate {
 			geocoding.requestCities(withName: name)
 		}
 	}
+}
+
+extension AddCityViewController: UISearchControllerDelegate {
+	func didPresentSearchController(_ searchController: UISearchController) {
+		DispatchQueue.main.async { [weak self] in
+			self?.searchController.searchBar.becomeFirstResponder()
+		}
+	 }
 }
 
 // MARK: - UISearchResultsUpdating
