@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import OpenWeather
 
 class CityTableViewCell: UITableViewCell {
 
@@ -64,7 +65,6 @@ class CityTableViewCell: UITableViewCell {
 	var weather: Weather? {
 		didSet {
 			guard let weather else { return }
-			print("updated")
 			descriptionLabel.text = weather.formattedDescription
 			iconImageView.image = UIImage(named: weather.icon)
 			let kelvin = Measurement(value: weather.temp, unit: UnitTemperature.kelvin)

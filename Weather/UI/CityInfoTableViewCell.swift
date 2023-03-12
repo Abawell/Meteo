@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import OpenWeather
 
 class CityInfoTableViewCell: UITableViewCell {
 

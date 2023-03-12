@@ -8,6 +8,7 @@
 // To limit the number of requests to the server, the search for cities is not done continuously, but when you press the Search button.
 
 import UIKit
+import OpenWeather
 
 protocol AddCityViewControllerDelegate: AnyObject {
 	func addCityViewController(_ controller: AddCityViewController, didSelect city: CityInfo)
@@ -55,7 +56,7 @@ class AddCityViewController: UITableViewController {
 	private func requestCities(withName name: String) {
 		cities = []
 		tableView.reloadData()
-		OpenWeather.requestCities(withName: name) { [weak self] cities, error in
+		OpenWeatherController.requestCities(withName: name) { [weak self] cities, error in
 			guard let self else { return }
 			if let cities {
 				// Using a Set to get unicity of the city (same name, country and state)

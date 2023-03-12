@@ -7,6 +7,7 @@
 
 import UIKit
 import CoreData
+import OpenWeather
 
 class CityListTableViewController: UITableViewController {
 
@@ -29,7 +30,7 @@ class CityListTableViewController: UITableViewController {
 			} else {
 				if let cities = fetchedResultsController.fetchedObjects, !cities.isEmpty {
 					for city in cities {
-						OpenWeather.addObserver(self, for: city)
+						OpenWeatherController.addObserver(self, for: city)
 					}
 				}
 				tableView.reloadData()
@@ -38,7 +39,7 @@ class CityListTableViewController: UITableViewController {
 	}
 
 	deinit {
-		OpenWeather.removeObserver(self)
+		OpenWeatherController.removeObserver(self)
 	}
 
 	// MARK: - Navigation
@@ -75,14 +76,14 @@ class CityListTableViewController: UITableViewController {
 		let cell = tableView.dequeueReusableCell(withIdentifier: "CityCell", for: indexPath) as! CityTableViewCell
 		let city = fetchedResultsController.object(at: indexPath)
 		cell.city = city
-		cell.weather = OpenWeather.getWeather(for: city)
+		cell.weather = OpenWeatherController.getWeather(for: city)
 		return cell
 	}
 
 	override func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
 		let deleteAction = UIContextualAction(style: .destructive, title: NSLocalizedString("Delete", comment: "Delete")) { [unowned self] action, sourceView, completionHandler in
 			let city = fetchedResultsController.object(at: indexPath)
-			OpenWeather.removeObserver(self, for: city)
+			OpenWeatherController.removeObserver(self, for: city)
 			Persistence.shared.delete(city)
 			completionHandler(true)
 		}
@@ -96,7 +97,7 @@ extension CityListTableViewController: AddCityViewControllerDelegate {
 	
 	func addCityViewController(_ controller: AddCityViewController, didSelect cityInfo: CityInfo) {
 		if let city = Persistence.shared.addCity(cityInfo) {
-			OpenWeather.addObserver(self, for: city)
+			OpenWeatherController.addObserver(self, for: city)
 		}
 	}
 }
@@ -127,7 +128,7 @@ extension CityListTableViewController: NSFetchedResultsControllerDelegate {
 }
 
 extension CityListTableViewController: OpenWeatherObserver {
-	func openWeather(weather: Weather, for position: any CityPosition) {
+	func openWeather(weather: Weather, for position: any CityCoordinates) {
 		guard let city = fetchedResultsController.fetchedObjects?.first(where: {
 			$0.longitude == position.longitude && $0.latitude == position.latitude
 		}) else { return }

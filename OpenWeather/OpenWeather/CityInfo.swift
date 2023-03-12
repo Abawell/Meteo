@@ -7,12 +7,12 @@
 
 import Foundation
 
-public protocol CityPosition: Hashable {
+public protocol CityCoordinates: Hashable {
 	var latitude: Double { get }
 	var longitude: Double { get }
 }
 
-public struct CityInfo: CityPosition, Decodable, Comparable {
+public struct CityInfo: CityCoordinates, Decodable, Comparable {
 	public let name: String
 	public let state: String?
 	public let country: String

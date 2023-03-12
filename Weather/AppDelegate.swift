@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import OpenWeather
 
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -14,7 +15,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 	func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
 		if let appid = Bundle.main.infoDictionary?["APP_ID"] as? String {
-			OpenWeather.setup(appId: appid)
+			OpenWeatherController.setup(appId: appid)
 		}
 
 		return true

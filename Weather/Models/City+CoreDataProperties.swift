@@ -8,6 +8,7 @@
 
 import Foundation
 import CoreData
+import OpenWeather
 
 
 extension City {
@@ -24,7 +25,7 @@ extension City {
     @NSManaged public var lon: Double
 }
 
-extension City: CityPosition {
+extension City: CityCoordinates {
 	public var latitude: Double {
 		return lat
 	}

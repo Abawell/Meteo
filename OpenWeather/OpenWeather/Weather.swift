@@ -8,18 +8,18 @@
 import UIKit
 
 public struct Weather: Decodable {
-	let date: Date
-	let icon: String
-	let description: String
-	let temp: Double
-	let feelsLike: Double
-	let tempMin: Double
-	let tempMax: Double
-	let pressure: Double
-	let humidity: Int
-	let windSpeed: Double
-	let windDeg: Double
-	let windGust: Double?
+	public let date: Date
+	public let icon: String
+	public let description: String
+	public let temp: Double
+	public let feelsLike: Double
+	public let tempMin: Double
+	public let tempMax: Double
+	public let pressure: Double
+	public let humidity: Int
+	public let windSpeed: Double
+	public let windDeg: Double
+	public let windGust: Double?
 
 	private struct NestedWeather: Decodable {
 		let icon: String

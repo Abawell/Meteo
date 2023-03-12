@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import OpenWeather
 
 class CityDetailsViewController: UIViewController {
 
@@ -53,15 +54,15 @@ class CityDetailsViewController: UIViewController {
 		westLabel.text = NSLocalizedString("West", comment: "W")
 
 		if let city {
-			OpenWeather.addObserver(self, for: city)
-			weather = OpenWeather.getWeather(for: city)
+			OpenWeatherController.addObserver(self, for: city)
+			weather = OpenWeatherController.getWeather(for: city)
 		}
 		updateControls()
 	}
 
 	deinit {
 		if let city {
-			OpenWeather.removeObserver(self, for: city)
+			OpenWeatherController.removeObserver(self, for: city)
 		}
 	}
 
@@ -146,7 +147,7 @@ class CityDetailsViewController: UIViewController {
 }
 
 extension CityDetailsViewController: OpenWeatherObserver {
-	func openWeather(weather: Weather, for position: any CityPosition) {
+	func openWeather(weather: Weather, for position: any CityCoordinates) {
 		self.weather = weather
 		updateControls()
 	}
