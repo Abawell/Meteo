@@ -27,7 +27,8 @@
 		0226260629BCA9A0002670A4 /* CityTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0226260529BCA9A0002670A4 /* CityTableViewCell.swift */; };
 		0226260A29BCFE08002670A4 /* Media.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0226260929BCFE08002670A4 /* Media.xcassets */; };
 		0226261029BDFF32002670A4 /* CityInfoTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0226260F29BDFF32002670A4 /* CityInfoTableViewCell.swift */; };
-		0226266229BE3666002670A4 /* OpenWeather.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0226265C29BE314D002670A4 /* OpenWeather.framework */; };
+		0226266329BE5720002670A4 /* OpenWeather.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0226265C29BE314D002670A4 /* OpenWeather.framework */; };
+		0226266429BE5720002670A4 /* OpenWeather.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 0226265C29BE314D002670A4 /* OpenWeather.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -60,6 +61,20 @@
 			remoteInfo = OpenWeatherTests;
 		};
 /* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		0226266529BE5720002670A4 /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				0226266429BE5720002670A4 /* OpenWeather.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		0226252B29BA2F2B002670A4 /* Weather.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Weather.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -99,7 +114,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				0226266229BE3666002670A4 /* OpenWeather.framework in Frameworks */,
+				0226266329BE5720002670A4 /* OpenWeather.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -235,6 +250,7 @@
 				0226252729BA2F2B002670A4 /* Sources */,
 				0226252829BA2F2B002670A4 /* Frameworks */,
 				0226252929BA2F2B002670A4 /* Resources */,
+				0226266529BE5720002670A4 /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
