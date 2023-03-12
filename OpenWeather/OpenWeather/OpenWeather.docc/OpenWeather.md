@@ -1,10 +1,18 @@
 # ``OpenWeather``
 
-<!--@START_MENU_TOKEN@-->Summary<!--@END_MENU_TOKEN@-->
+Tiny framework to get weather information using the openweathermap.org API
 
 ## Overview
 
-<!--@START_MENU_TOKEN@-->Text<!--@END_MENU_TOKEN@-->
+``OpenWeatherController`` is a global class with only static functions
+
+``OpenWeatherController/setup(appId:)`` must be called before any other functions
+
+Call ``OpenWeatherController/requestCities(withName:handler:)`` to get a list of cities matching a city name
+
+To get all weather updates for a city from its coordinates, register an ``OpenWeatherObserver`` with ``OpenWeatherController/addObserver(_:for:)``.
+Call ``OpenWeatherController/getWeather(for:)`` to get the lastest weather information for a city from its coordinates.
+The observer callback function is called automatically every 5 minures
 
 ## Topics
 

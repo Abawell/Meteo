@@ -7,14 +7,17 @@
 
 import Foundation
 
-// setup(appId:) must be called before any other functions
+///``OpenWeatherController`` is a global class with only static functions
+///
+///``OpenWeatherController/setup(appId:)`` must be called before any other functions
+///
+///Call ``OpenWeatherController/requestCities(withName:handler:)`` to get a list of cities matching a city name
+///
+///To get all weather updates for a city from its coordinates, register an ``OpenWeatherObserver`` with ``OpenWeatherController/addObserver(_:for:)``.
+///Call ``OpenWeatherController/getWeather(for:)`` to get the lastest weather information for a city from its coordinates.
+///The observer callback function is called automatically every 5 minures
 
-// Call requestCities to get a list of cities from a city name
-// Add a observer to get weather infomation for a specific city coordinates
-// call getWeather(for:) to get the last weather information for a city coordinates
-// the observer callback function is called automaticaly every 5mn
-
-// Time interval between two weather information updates
+/// Time interval between two weather information updates
 private let UpdateTimeInterval: TimeInterval = 60 * 5		// 5mn
 
 public protocol OpenWeatherObserver: AnyObject {
@@ -25,6 +28,8 @@ public class OpenWeatherController {
 	private static let shared = OpenWeatherController()
 	private init() {}
 
+	/// Setup the framework. Must be called before any other functions
+	/// - Parameter appId: the openweathermap.org API key
 	public static func setup(appId: String) {
 		shared.appId = appId
 	}
@@ -35,6 +40,10 @@ public class OpenWeatherController {
 
 	private var currentRequestCitiesTask: URLSessionTask?
 
+	/// Get a list of cities from a city name.
+	/// - Parameters:
+	///   - cityName: The name of the city to search
+	///   - handler: Returns asynchronously a list of up to 5 cities matching the name
 	public static func requestCities(withName cityName: String, handler: @escaping ([CityInfo]?,Error?) -> Void) {
 		shared.requestCities(withName: cityName, handler: handler)
 	}
@@ -77,7 +86,7 @@ public class OpenWeatherController {
 	}
 
 	// Needed because a protocol cannot be used as a dictionnary key
-	private struct CoordinateRef: CityCoordinates {
+	private struct CoordinateRef: CityCoordinates, Hashable {
 		let latitude: Double
 		let longitude: Double
 
@@ -116,6 +125,9 @@ public class OpenWeatherController {
 	private var registry = [CoordinateRef: CityWeather]()
 	private var timer: Timer?
 
+	/// Get the lastest weather information for a city from its coordinates.
+	/// - Parameter coordinates: The city coordinates
+	/// - Returns: The weather informations or `nil` if this information is not yet known
 	public static func getWeather(for coordinates: any CityCoordinates) -> Weather? {
 		return shared.getWeather(for: coordinates)
 	}
@@ -136,6 +148,11 @@ public class OpenWeatherController {
 		}
 	}
 
+
+	/// Register an ``OpenWeatherObserver`` to get all weather information updates for a city from its coordinates
+	/// - Parameters:
+	///   - observer: An ``OpenWeatherObserver``
+	///   - coordinates: City coordinates to observe
 	public static func addObserver(_ observer: OpenWeatherObserver, for coordinates: any CityCoordinates) {
 		shared.addObserver(observer, for: coordinates)
 	}
@@ -154,6 +171,10 @@ public class OpenWeatherController {
 		}
 	}
 
+	/// Unregister an ``OpenWeatherObserver``.
+	/// - Parameters:
+	///   - observer: The ``OpenWeatherObserver`` to unregister
+	///   - coordinates: City coordinates. If not nil, only updates for these coordinates are removed. If nil, all the update for this observer are removed.
 	public static func removeObserver(_ observer: OpenWeatherObserver, for coordinates: (any CityCoordinates)? = nil) {
 		shared.removeObserver(observer, for: coordinates)
 	}

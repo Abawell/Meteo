@@ -7,18 +7,43 @@
 
 import UIKit
 
+/// Weather information at a specific time
 public struct Weather: Decodable {
+
+	/// Date of the wheather information
 	public let date: Date
+
+	/// Weather icon id
 	public let icon: String
+
+	/// Localized weather condition
 	public let description: String
+
+	/// Temperature in Kelvin
 	public let temp: Double
+
+	/// The temperature felt by a human, in Kelvin
 	public let feelsLike: Double
+
+	/// Minimum temperature at the moment, in Kelvin
 	public let tempMin: Double
+
+	/// Maximum temperature at the moment, in Kelvin
 	public let tempMax: Double
+
+	/// Atmospheric pressure, hPa
 	public let pressure: Double
+
+	/// Humidity, %
 	public let humidity: Int
+
+	/// Wind speed, meter/sec
 	public let windSpeed: Double
+
+	/// Wind direction, degrees from the north
 	public let windDeg: Double
+
+	/// Wind gust when available, meter/sec
 	public let windGust: Double?
 
 	private struct NestedWeather: Decodable {

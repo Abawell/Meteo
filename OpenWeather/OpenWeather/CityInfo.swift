@@ -7,16 +7,26 @@
 
 import Foundation
 
-public protocol CityCoordinates: Hashable {
+public protocol CityCoordinates {
 	var latitude: Double { get }
 	var longitude: Double { get }
 }
 
-public struct CityInfo: CityCoordinates, Decodable, Comparable {
+public struct CityInfo: CityCoordinates, Hashable, Decodable, Comparable {
+
+	/// Name of the city. Localized if a localized name is known
 	public let name: String
+
+	/// State of the city when available
 	public let state: String?
+
+	/// Country code of the city. `US` for United-States of America
 	public let country: String
+
+	/// Latitude coordinate of the city
 	public let latitude: Double
+
+	/// Longitude coordinates of the city
 	public let longitude: Double
 
 	private enum CodingKeys: String, CodingKey {
