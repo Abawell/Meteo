@@ -7,12 +7,7 @@
 
 import UIKit
 
-private struct NestedWeather: Decodable {
-	let icon: String
-	let description: String
-}
-
-struct Weather: Decodable {
+public struct Weather: Decodable {
 	let date: Date
 	let icon: String
 	let description: String
@@ -26,7 +21,12 @@ struct Weather: Decodable {
 	let windDeg: Double
 	let windGust: Double?
 
-	enum CodingKeys: CodingKey {
+	private struct NestedWeather: Decodable {
+		let icon: String
+		let description: String
+	}
+
+	private enum CodingKeys: CodingKey {
 
 		case dt
 		case weather
@@ -49,7 +49,7 @@ struct Weather: Decodable {
 		}
 	}
 
-	init(from decoder: Decoder) throws {
+	public init(from decoder: Decoder) throws {
 		let container = try decoder.container(keyedBy: CodingKeys.self)
 
 		let timestamp = try container.decode(Int.self, forKey: .dt)
@@ -73,11 +73,7 @@ struct Weather: Decodable {
 		self.windGust = try windContainer.decodeIfPresent(Double.self, forKey: .gust)
 	}
 
-	var formattedDescription: String {
+	public var formattedDescription: String {
 		return description.prefix(1).capitalized + description.dropFirst()
-	}
-
-	var image: UIImage? {
-		return UIImage(named: icon)
 	}
 }

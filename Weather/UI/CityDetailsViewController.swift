@@ -53,15 +53,15 @@ class CityDetailsViewController: UIViewController {
 		westLabel.text = NSLocalizedString("West", comment: "W")
 
 		if let city {
-			OpenWeather.shared.addObserver(self, for: city)
-			weather = OpenWeather.shared.getWeather(for: city)
+			OpenWeather.addObserver(self, for: city)
+			weather = OpenWeather.getWeather(for: city)
 		}
 		updateControls()
 	}
 
 	deinit {
 		if let city {
-			OpenWeather.shared.removeObserver(self, for: city)
+			OpenWeather.removeObserver(self, for: city)
 		}
 	}
 
@@ -76,7 +76,7 @@ class CityDetailsViewController: UIViewController {
 		}
 
 		if let weather {
-			iconImageView.image = weather.image
+			iconImageView.image = UIImage(named: weather.icon)
 			descriptionLabel.text = weather.formattedDescription
 
 			let numberFormatter = NumberFormatter()
@@ -146,7 +146,7 @@ class CityDetailsViewController: UIViewController {
 }
 
 extension CityDetailsViewController: OpenWeatherObserver {
-	func openWeather(weather: Weather, for city: City) {
+	func openWeather(weather: Weather, for position: any CityPosition) {
 		self.weather = weather
 		updateControls()
 	}

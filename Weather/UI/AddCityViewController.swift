@@ -17,7 +17,6 @@ class AddCityViewController: UITableViewController {
 
 	weak var delegate: AddCityViewControllerDelegate?
 
-	private let geocoding = Geocoding()
 	private var cities = [CityInfo]()
 	private var askForName = true
 
@@ -42,8 +41,6 @@ class AddCityViewController: UITableViewController {
 		navigationItem.searchController = searchController
 		navigationItem.hidesSearchBarWhenScrolling = false
 		searchController.searchBar.becomeFirstResponder()
-
-		geocoding.delegate = self
     }
 
 	override func viewDidAppear(_ animated: Bool) {
@@ -55,8 +52,24 @@ class AddCityViewController: UITableViewController {
 		presentingViewController?.dismiss(animated: true)
 	}
 
-	private func searchCity(named: String) {
-
+	private func requestCities(withName name: String) {
+		cities = []
+		tableView.reloadData()
+		OpenWeather.requestCities(withName: name) { [weak self] cities, error in
+			guard let self else { return }
+			if let cities {
+				// Using a Set to get unicity of the city (same name, country and state)
+				self.cities = Set(cities).sorted()
+				self.askForName = false
+				self.tableView.reloadData()
+			} else if let error {
+				let alert = UIAlertController(title: NSLocalizedString("Error", comment: "Error"), message: error.localizedDescription, preferredStyle: .alert)
+				alert.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: "OK"), style: .default))
+				self.present(alert, animated: true)
+				self.askForName = true
+				self.tableView.reloadData()
+			}
+		}
 	}
 
 	// MARK: - Table view data source/delegate
@@ -66,7 +79,7 @@ class AddCityViewController: UITableViewController {
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "CityCell", for: indexPath) as! CityTableViewCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: "CityCell", for: indexPath) as! CityInfoTableViewCell
 		cell.city = cities[indexPath.row]
         return cell
     }
@@ -105,13 +118,12 @@ class AddCityViewController: UITableViewController {
 extension AddCityViewController: UISearchBarDelegate {
 	func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
 		if let name = searchBar.text, !name.isEmpty {
-			cities = []
-			tableView.reloadData()
-			geocoding.requestCities(withName: name)
+			requestCities(withName: name)
 		}
 	}
 }
 
+// MARK: - UISearchControllerDelegate
 extension AddCityViewController: UISearchControllerDelegate {
 	func didPresentSearchController(_ searchController: UISearchController) {
 		DispatchQueue.main.async { [weak self] in
@@ -127,20 +139,3 @@ extension AddCityViewController: UISearchResultsUpdating {
 	}
 }
 
-// MARK: - Geocoding delegate
-extension AddCityViewController: GeocodingDelegate {
-	func geocoding(_ geocoding: Geocoding, didFindCities cities: [CityInfo]) {
-		// Using a Set to get unicity of the city (same name, country and state)
-		self.cities = Set(cities).sorted()
-		askForName = false
-		tableView.reloadData()
-	}
-
-	func geocoding(_ geocoding: Geocoding, error: Error) {
-		let alert = UIAlertController(title: NSLocalizedString("Error", comment: "Error"), message: error.localizedDescription, preferredStyle: .alert)
-		alert.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: "OK"), style: .default))
-		present(alert, animated: true)
-		askForName = true
-		tableView.reloadData()
-	}
-}

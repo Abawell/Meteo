@@ -90,8 +90,8 @@ class Persistence {
 			city.name = cityInfo.name
 			city.state = cityInfo.state ?? ""
 			city.country = cityInfo.country
-			city.lat = cityInfo.lat
-			city.lon = cityInfo.lon
+			city.lat = cityInfo.latitude
+			city.lon = cityInfo.longitude
 			save()
 			return city
 		} catch {

@@ -24,4 +24,21 @@ extension City {
     @NSManaged public var lon: Double
 }
 
-extension City: CityDescription {}
+extension City: CityPosition {
+	public var latitude: Double {
+		return lat
+	}
+
+	public var longitude: Double {
+		return lon
+	}
+
+	var location: String {
+		let countryName = (Locale.current as NSLocale).localizedString(forCountryCode: country) ?? country
+		if let state {
+			return "\(state) - \(countryName)"
+		} else {
+			return countryName
+		}
+	}
+}

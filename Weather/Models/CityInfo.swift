@@ -7,15 +7,19 @@
 
 import Foundation
 
-struct CityInfo: CityDescription, Decodable, Hashable, Equatable, Comparable {
+public protocol CityPosition: Hashable {
+	var latitude: Double { get }
+	var longitude: Double { get }
+}
 
-	let name: String
-	let state: String?
-	let country: String
-	let lat: Double
-	let lon: Double
+public struct CityInfo: CityPosition, Decodable, Comparable {
+	public let name: String
+	public let state: String?
+	public let country: String
+	public let latitude: Double
+	public let longitude: Double
 
-	enum CodingKeys: String, CodingKey {
+	private enum CodingKeys: String, CodingKey {
 		case name
 		case state
 		case country
@@ -24,12 +28,12 @@ struct CityInfo: CityDescription, Decodable, Hashable, Equatable, Comparable {
 		case localNames = "local_names"
 	}
 
-	init(from decoder: Decoder) throws {
+	public init(from decoder: Decoder) throws {
 		let container = try decoder.container(keyedBy: CodingKeys.self)
 		self.state = try container.decodeIfPresent(String.self, forKey: .state)
 		self.country = try container.decode(String.self, forKey: .country)
-		self.lat = try container.decode(Double.self, forKey: .lat)
-		self.lon = try container.decode(Double.self, forKey: .lon)
+		self.latitude = try container.decode(Double.self, forKey: .lat)
+		self.longitude = try container.decode(Double.self, forKey: .lon)
 
 		var name = try container.decode(String.self, forKey: .name)
 		// tries to get the local name if it exists
@@ -41,17 +45,17 @@ struct CityInfo: CityDescription, Decodable, Hashable, Equatable, Comparable {
 		self.name = name
 	}
 
-	func hash(into hasher: inout Hasher) {
+	public func hash(into hasher: inout Hasher) {
 		hasher.combine(name.lowercased())
 		hasher.combine(state)
 		hasher.combine(country)
 	}
 
-	static func == (lhs: CityInfo, rhs: CityInfo) -> Bool {
+	public static func == (lhs: CityInfo, rhs: CityInfo) -> Bool {
 		return lhs.name.caseInsensitiveCompare(rhs.name) == .orderedSame && lhs.state == rhs.state && lhs.country == rhs.country
 	}
 
-	static func < (lhs: CityInfo, rhs: CityInfo) -> Bool {
+	public static func < (lhs: CityInfo, rhs: CityInfo) -> Bool {
 		let nameCompare = lhs.name.localizedCompare(rhs.name)
 		if nameCompare == .orderedAscending { return true }
 		if nameCompare == .orderedDescending { return false }
@@ -59,5 +63,14 @@ struct CityInfo: CityDescription, Decodable, Hashable, Equatable, Comparable {
 		if stateCompare == .orderedAscending { return true }
 		if stateCompare == .orderedDescending { return false }
 		return lhs.country < rhs.country
+	}
+
+	public var location: String {
+		let countryName = (Locale.current as NSLocale).localizedString(forCountryCode: country) ?? country
+		if let state {
+			return "\(state) - \(countryName)"
+		} else {
+			return countryName
+		}
 	}
 }

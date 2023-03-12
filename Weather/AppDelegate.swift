@@ -13,7 +13,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 	var window: UIWindow?
 
 	func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
-		// Override point for customization after application launch.
+		if let appid = Bundle.main.infoDictionary?["APP_ID"] as? String {
+			OpenWeather.setup(appId: appid)
+		}
+
 		return true
 	}
 
